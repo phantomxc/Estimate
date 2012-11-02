@@ -1,149 +1,9 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="index.css" />
 
-        <style>
-            .container-fluid {
-                padding-left:0px;
-                padding-right:0px;
-            }
-            body {
-                background-image:url("fabric_plaid.png");
-            }
-            
-            #guess-list {
-                background: #207791; /* Old browsers */
-                background: -moz-linear-gradient(top,  #207791 0%, #115a70 100%); /* FF3.6+ */
-                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#207791), color-stop(100%,#115a70)); /* Chrome,Safari4+ */
-                background: -webkit-linear-gradient(top,  #207791 0%,#115a70 100%); /* Chrome10+,Safari5.1+ */
-                background: -o-linear-gradient(top,  #207791 0%,#115a70 100%); /* Opera 11.10+ */
-                background: -ms-linear-gradient(top,  #207791 0%,#115a70 100%); /* IE10+ */
-                background: linear-gradient(to bottom,  #207791 0%,#115a70 100%); /* W3C */
-                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207791', endColorstr='#115a70',GradientType=0 ); /* IE6-9 */
-
-            }
-
-            .tile p {
-                color:white;
-                color: rgba(255, 255, 255, 0.9);
-            }
-
-            .tile h4 {
-                color: white;
-                color: rgba(255, 255, 255, 0.8);
-            }
-
-            .tile .estimate {
-                font-size:75px;
-                float:right;
-                position:relative;
-                padding-right:50px;
-                top:-15px;
-
-                font-family: "League-Gothic", Courier;
-                /*color: #222;*/
-                color: #022B3B;
-                text-shadow: 0px 2px 3px #666;
-            }
-
-            .tile {
-                height:100px;
-                border-right: 1px solid #333;
-                border-right: 1px solid rgba(0, 0, 0, 0.25);
-                border-bottom: 1px solid #333;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-                -webkit-box-shadow: rgba(255, 255, 255, 0.25) 1px 0px 0px;
-                -moz-box-shadow: rgba(255,255,255,0.25) 1px 0px 0px;
-                box-shadow: rgba(255, 255, 255, 0.25) 1px 0px 0px;
-                position: relative;
-                overflow: hidden;
-                cursor: default;
-                -moz-box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-
-            }
-
-            .tile .tile-content {
-                padding-left:10px;
-            }
-
-            li.tile:hover {
-                -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 30px, rgba(255, 255, 255, 0.25) 1px 0px 0px;
-                -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 30px, rgba(255, 255, 255, 0.25) 1px 0px 0px;
-                box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 30px, rgba(255, 255, 255, 0.25) 1px 0px 0px;
-                /*background: rgba(255, 255, 255, 0.1);*/
-            }
-
-            li.tile:nth-child(odd):hover {
-                -webkit-box-shadow: rgba(0, 0, 0, 0.5) 30px 0px 30px -30px inset, rgba(0, 0, 0, 0.5) -30px 0px 30px -30px inset, rgba(255, 255, 255, 0.25) 1px 0px 0px;
-                -moz-box-shadow: rgba(0, 0, 0, 0.5) 30px 0px 30px -30px inset, rgba(0, 0, 0, 0.5) -30px 0px 30px -30px inset, rgba(255, 255, 255, 0.25) 1px 0px 0px;
-                box-shadow: rgba(0, 0, 0, 0.5) 30px 0px 30px -30px inset, rgba(0, 0, 0, 0.5) -30px 0px 30px -30px inset, rgba(255, 255, 255, 0.25) 1px 0px 0px;
-                background: rgba(0, 0, 0, 0.1);
-            }
-            li.tile:nth-child(odd) {
-                -webkit-box-shadow: rgba(0, 0, 0, 0.3) 30px 0px 30px -30px inset, rgba(0, 0, 0, 0.3) -30px 0px 30px -30px inset, rgba(255, 255, 255, 0.25) 1px 0px 0px;
-                -moz-box-shadow: rgba(0, 0, 0, 0.3) 30px 0px 30px -30px inset, rgba(0, 0, 0, 0.3) -30px 0px 30px -30px inset, rgba(255, 255, 255, 0.25) 1px 0px 0px;
-                box-shadow: rgba(0, 0, 0, 0.3) 30px 0px 30px -30px inset, rgba(0, 0, 0, 0.3) -30px 0px 30px -30px inset, rgba(255, 255, 255, 0.25) 1px 0px 0px;
-                background: rgba(0, 0, 0, 0.02);
-            }
-            li.tile {
-                cursor: pointer;
-                text-decoration: none;
-                display: block;
-                -webkit-transition: all .4s ease-in-out;
-                -moz-transition: all .4s ease-in-out;
-            }
-
-            .tile ul {
-                height: 30px;
-                border-top: 1px solid rgba(0, 0, 0, 0.15);
-                -moz-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px inset;
-                -webkit-box-shadow: rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
-                box-shadow: rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
-                position: absolute;
-                bottom: 0px;
-                left: 0px;
-                right: 0px;
-                margin: 0px;
-                padding: 0px;
-                padding-left: 25px;
-                padding-right: 40px;
-                text-align: center;
-            }
-            
-            .tile ul li {
-                font-family: HelveticaNeue, Helvetica, Arial;
-                padding-top:5px;
-                height: 100%;
-                width: 25%;
-                list-style: none;
-                float: left;
-                border-right: 1px solid rgba(0, 0, 0, 0.15);
-                -webkit-box-shadow: rgba(255, 255, 255, 0.25) -1px 0px 0px inset;
-                -moz-box-shadow: rgba(255,255,255,0.25) -1px 0px 0px inset;
-                box-shadow: rgba(255, 255, 255, 0.25) -1px 0px 0px inset;
-                -moz-box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-                position: relative;
-                color: white;
-            }
-
-            .tile ul li:last-child {
-                border: 0px solid;
-                box-shadow: none;
-            }
-
-            .tile ul li:hover {
-                -webkit-box-shadow: rgba(0, 0, 0, 0.5) 30px 0px 30px -30px inset, rgba(0, 0, 0, 0.5) -30px 0px 30px -30px inset, rgba(255, 255, 255, 0.25) 1px 0px 0px;
-                -moz-box-shadow: rgba(0, 0, 0, 0.5) 30px 0px 30px -30px inset, rgba(0, 0, 0, 0.5) -30px 0px 30px -30px inset, rgba(255, 255, 255, 0.25) 1px 0px 0px;
-                box-shadow: rgba(0, 0, 0, 0.5) 30px 0px 30px -30px inset, rgba(0, 0, 0, 0.5) -30px 0px 30px -30px inset, rgba(255, 255, 255, 0.25) 1px 0px 0px;
-                background: rgba(0, 0, 0, 0.1);
-            }
-
-        </style>
-
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script src="lib/jquery-1.8.2.min.js"></script>
         <script src="lib/underscore-min.js"></script>
         <script src="lib/backbone-min.js"></script>
@@ -159,14 +19,23 @@
                         <%= estimate %>
                     </span>
                     <p>
-                        <%= notes %>
+                        &nbsp; <%= notes %>
                     </p>
                 </div>
+
+                <div class="progress progress-warning">
+                    <div class="bar" style="width: <%= percent %>%"></div>
+                </div>
+
                 <ul class="unstyled">
-                    <li class="guess-start"> <%= start ? '' : 'START' %> </li>
+                    <li class="guess-start"> 
+                        <% if (!finish) { %> 
+                            <%= start ? 'PAUSE' : 'START' %>
+                        <% } %>
+                    </li>
                     <li class="guess-edit"> EDIT </li>
                     <li class="guess-delete"> DELETE </li>
-                    <li class="guess-stop"> <%= finish || !start ? '': 'STOP' %> </li>
+                    <li class="guess-stop"> <%= finish || !start ? '': 'FINISH' %> </li>
                 </ul>
             </div>
         </script>
@@ -189,7 +58,15 @@
                 start:false,
                 finish:false,
                 estimate:'',
-                notes:''
+                notes:'',
+                percent:''
+            },
+
+            initialize: function() {
+                this.on('update:percent', this.calcPercent, this);
+                this.on('remove', function() {
+                    this.destroy();
+                }, this);
             },
 
             startTime: function() {
@@ -204,6 +81,37 @@
                 this.save({
                     finish: d.getTime()
                 });
+            },
+
+            pause: function() {
+                var d = new Date();
+            },
+
+            resume: function() {
+                var d = new Date();
+            },
+
+            calcPercent: function() {
+                var s = this.get('start');
+                var est = this.get('estimate');
+                est = est * 86400000;
+                var d = new Date();
+
+                this.save({
+                    percent:((d.getTime() - s) / est) * 100
+                });
+            },
+
+            totalDays: function() {
+                var s = this.get('start');
+                var f = this.get('finish');
+                if (f) {
+                    var t = (f - s) / 864000000;
+                    return t;
+                } else {
+                    return 0;
+                }
+                 
             }
         });
 
@@ -223,7 +131,6 @@
             },
 
             addGuess: function() {
-                console.log('added my guess');
                 App.GuessList.create({
                     'title':this.title.val(),
                     'estimate':this.estimate.val(),
@@ -256,7 +163,6 @@
             },
 
             addAll: function() {
-                console.log('addAll');
                 App.GuessList.each(this.addOne, this);
             }
         });
@@ -272,25 +178,73 @@
 
             events: {
                 'click .guess-start':'startTime',
-                'click .guess-stop':'stopTime'
+                'click .guess-stop':'stopTime',
+                'click .guess-delete':'deleteGuess'
             },
 
             initialize: function() {
             },
 
             render: function() {
+                this.model.trigger('update:percent');
                 $(this.el).html(this.template(this.model.toJSON()));
                 return this
             },
 
             startTime: function() {
-                this.model.startTime();
+                if (this.model.get('start')) {
+                   this.model.pause(); 
+                } else {
+                    this.model.startTime();
+                }
                 this.render();
             },
 
             stopTime: function() {
                 this.model.finishTime();
                 this.render();
+            },
+
+            deleteGuess: function() {
+                this.remove();
+                App.GuessList.remove(this.model);
+                console.log(App.GuessList);
+            }
+        });
+
+        App.Views.GuessChartView = Backbone.View.extend({
+            
+            el:'#thechart',
+
+            initialize: function() {
+
+                this.collection.on('change', this.render, this);
+                this.collection.on('remove', this.render, this);
+
+                this.render();
+            },
+
+            render: function() {
+
+                var data = [['Title', 'Estimate', 'Actual']];
+                _.each(this.collection.models, function(m) {
+                    data.push([m.get('title'), parseInt(m.get('estimate')), m.totalDays()]); 
+                });
+
+                if (data.length > 1) {
+                    data = google.visualization.arrayToDataTable(data);
+
+                    var options = {
+                        title: 'Your off the Cuff Performance',
+                        hAxis: {title: 'Estimates', titleTextStyle: {color: 'red'}},
+                        backgroundColor: { fill:'transparent' }
+                    };
+
+                    var chart = new google.visualization.ColumnChart(document.getElementById('thechart'));
+                    chart.draw(data, options);
+                } else {
+                    $('#thechart').html('');
+                }
             }
         });
 
@@ -309,69 +263,53 @@
             },
 
             build: function() {
-                console.log('building');
             }
         });
 
-
         $(function() {
-            new App.Routers.Workspace();
-            
-            App.GuessList = new App.Collections.GuessCollection();
-            App.addView = new App.Views.GuessAddView();
-            App.GuessListView = new App.Views.GuessListView();
 
-            Backbone.history.start();
+            
+                new App.Routers.Workspace();
+                
+                App.GuessList = new App.Collections.GuessCollection();
+                App.addView = new App.Views.GuessAddView();
+                App.GuessListView = new App.Views.GuessListView();
+
+                Backbone.history.start();
+            
+                function addChart() {
+                    App.GuessChartView = new App.Views.GuessChartView({collection:App.GuessList});
+                }
+                google.load("visualization", "1", {packages:["corechart"], callback:addChart});
+
         });
 
         </script>
     </head>
     <body>
-        <div id="app-view" class="container-fluid">
-            <div class="row-fluid">
-                <div class="span4">
-                    <ul id="guess-list" class="unstyled">
-                    </ul>
-                </div>
-                <div class="span6">
+        <div class="span5 theleft">
+            <ul id="guess-list" class="unstyled">
+            </ul>
+        </div>
+        <div id="app-view">
+            <div id="guess-add-view">
+                <h4> Title </h4>
+                <input type="text" id="guess-title" />
+               
+                <h4> Estimate (Days)</h4>
+                <input type="text" id="guess-guess" class="input-small"/>
 
-                    <div class="row-fluid">
-                        <div class="span6">
-                            <div id="guess-add-view">
-                                <label> Title </label>
-                                <input type="text" id="guess-title" />
-                               
-                                <label> Estimate (Days)</label>
-                                <input type="text" id="guess-guess" class="input-small"/>
+                <h4> Notes </h4>
+                <textarea id="guess-notes" rows="3"></textarea>
 
-                                <label> Notes </label>
-                                <textarea id="guess-notes" rows="3"></textarea>
+                <br />
 
-                                <br />
-
-                                <input type="button" class="btn btn-primary" value="Add" id="guess-add">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row-fluid">
-                        <div class="span6">
-                            <div id="guess-edit">
-                                EDIT GUESS
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row-fluid">
-                        <div class="span6">
-                            <div id="guess-charts">
-                                CHARTS?
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                <input type="button" class="btn btn-primary" value="Add" id="guess-add">
             </div>
+                    
+            <div id="thechart">
+            </div>
+
         </div>
     </body>
 </html>
